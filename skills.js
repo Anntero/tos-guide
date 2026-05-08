@@ -4553,19 +4553,24 @@ const allSkills = [
 ];
 
 function selectBaseClass(baseName, element) {
-    // 1. Highlight Main Button
+    // 1. Clear old highlights
     const buttons = document.querySelectorAll('#class-nav button');
     buttons.forEach(btn => btn.classList.remove('active'));
-    if (element) element.classList.add('active');
+    
+    // 2. Highlight the new button (if it exists)
+    if (element) {
+        element.classList.add('active');
+    }
 
-    // 2. Find unique Jobs (Trees) for this Base Class
+    // 3. Find unique Jobs for this category
+    // This looks for "Swordsman Tree", "Highlander Tree", etc.
     const jobTrees = [...new Set(allSkills
         .filter(s => s.tree && s.tree.includes(baseName))
         .map(s => s.tree)
     )].sort();
 
-    // 3. Create Sub-Menu Buttons
     const subNav = document.getElementById('sub-nav');
+    if (!subNav) return; // Safety check
     subNav.innerHTML = ""; 
     
     jobTrees.forEach(treeName => {
