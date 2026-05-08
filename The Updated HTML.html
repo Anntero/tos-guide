@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToS Pre-Rebuild Job Guide</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #121212; color: #e0e0e0; margin: 0; }
+        header { background: #1a1a1a; padding: 20px; text-align: center; border-bottom: 2px solid #c5a96a; position: sticky; top: 0; z-index: 100; }
+        
+        nav { margin-top: 15px; }
+        nav button { 
+            background: #333; color: #fff; border: 1px solid #c5a96a; 
+            padding: 10px 20px; margin: 5px; cursor: pointer; border-radius: 4px;
+        }
+        nav button.active { background: #c5a96a; color: #000; font-weight: bold; }
+
+        /* Styles for the sub-menu (Highlander, etc.) */
+        #sub-nav { margin-top: 15px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+        #sub-nav button {
+            background: #222; color: #aaa; border: 1px solid #444;
+            padding: 5px 15px; cursor: pointer; font-size: 0.85rem; border-radius: 4px;
+        }
+        #sub-nav button.active-sub { background: #c5a96a; color: #000; border-color: #fff; }
+
+        .container { padding: 20px; max-width: 1200px; margin: auto; }
+        .skill-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        .skill-card { background: #1e1e1e; border: 1px solid #333; padding: 20px; border-radius: 8px; }
+        .skill-tree { font-size: 0.75rem; color: #c5a96a; text-transform: uppercase; }
+        .skill-name { margin: 5px 0; font-size: 1.4rem; color: #fff; }
+        .skill-stats { background: #000; padding: 8px; font-size: 0.85rem; margin: 12px 0; color: #aaa; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Tree of Savior: Classic Guide</h1>
+    <nav id="class-nav">
+        <button onclick="selectBaseClass('Swordsman', this)">Swordsman</button>
+        <button onclick="selectBaseClass('Wizard', this)">Wizard</button>
+        <button onclick="selectBaseClass('Archer', this)">Archer</button>
+        <button onclick="selectBaseClass('Cleric', this)">Cleric</button>
+    </nav>
+    <div id="sub-nav"></div>
+</header>
+
+<div class="container">
+    <div class="skill-container" id="skill-board"></div>
+</div>
+
+<script src="skills.js"></script>
+</body>
+</html>
