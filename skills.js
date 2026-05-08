@@ -4610,5 +4610,7 @@ function filterBySpecificJob(treeName, element) {
 // Ensure it starts on Swordsman when you open the file
 window.onload = () => {
     const firstBtn = document.querySelector('#class-nav button');
-    if (firstBtn) selectBaseClass('Swordsman', firstBtn);
+    if (firstBtn) {
+        selectBaseClass('Swordsman', firstBtn);
+    }
 };
