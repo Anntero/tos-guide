@@ -4552,35 +4552,40 @@ const allSkills = [
   }
 ];
 
-// 1. Define which Jobs belong to which Base Class
+// 1. THIS IS THE MAP: Add all your jobs here so the site knows where they belong
 const classMap = {
-    "Swordsman": ["Swordsman Tree", "Highlander Tree", "Peltasta Tree", "Hoplite Tree", "Barbarian Tree"],
-    "Wizard": ["Wizard Tree", "Pyromancer Tree", "Cryomancer Tree", "Psychokino Tree"],
-    "Archer": ["Archer Tree", "Quarrel Shooter Tree", "Ranger Tree"],
-    "Cleric": ["Cleric Tree", "Priest Tree", "Krivis Tree", "Bokor Tree", "Dievdirbys Tree"]
+    "Swordsman": ["Swordsman Tree", "Highlander Tree", "Peltasta Tree", "Hoplite Tree", "Barbarian Tree", "Rodelero Tree", "Murmillo Tree", "Squire Tree", "Shinobi Tree", "Doppelsoeldner Tree", "Fencer Tree", "Dragoon Tree", "Templar Tree", "Lancer Tree", "Matador Tree", "Retiarius Tree"],
+    "Wizard": ["Wizard Tree", "Pyromancer Tree", "Cryomancer Tree", "Psychokino Tree", "Linker Tree", "Thaumaturge Tree", "Elementalist Tree", "Chronomancer Tree", "Alchemist Tree", "Sorcerer Tree", "Necromancer Tree", "Warlock Tree", "Featherfoot Tree", "Sage Tree", "Enchanter Tree", "Runecaster Tree", "Terramancer Tree", "Onmyoji Tree"],
+    "Archer": ["Archer Tree", "Quarrel Shooter Tree", "Ranger Tree", "Hunter Tree", "Sapper Tree", "Wugushi Tree", "Scout Tree", "Rogue Tree", "Fletcher Tree", "Falconer Tree", "Cannoneer Tree", "Musketeer Tree", "Schwarzer Reiter Tree", "Mergen Tree", "Appraiser Tree", "Hackapell Tree"],
+    "Cleric": ["Cleric Tree", "Priest Tree", "Krivis Tree", "Bokor Tree", "Dievdirbys Tree", "Sadhu Tree", "Paladin Tree", "Monk Tree", "Pardoner Tree", "Oracle Tree", "Druid Tree", "Plague Doctor Tree", "Kabbalist Tree", "Inquisitor Tree", "Taoist Tree", "Miko Tree", "Zealot Tree"]
 };
 
 function selectBaseClass(baseName, element) {
+    // Highlight the main button
     const buttons = document.querySelectorAll('#class-nav button');
     buttons.forEach(btn => btn.classList.remove('active'));
     if (element) element.classList.add('active');
 
-    // Use the Map above to find the right trees
+    // Look up the sub-classes using our Map above
     const jobTrees = classMap[baseName] || [];
 
     const subNav = document.getElementById('sub-nav');
     subNav.innerHTML = ""; 
     
     jobTrees.forEach(treeName => {
-        const btn = document.createElement('button');
-        btn.innerText = treeName.replace(" Tree", ""); 
-        btn.onclick = () => filterBySpecificJob(treeName, btn);
-        subNav.appendChild(btn);
+        // Check if we actually have data for this tree before making a button
+        const hasData = allSkills.some(s => s.tree === treeName);
+        if (hasData) {
+            const btn = document.createElement('button');
+            btn.innerText = treeName.replace(" Tree", ""); 
+            btn.onclick = () => filterBySpecificJob(treeName, btn);
+            subNav.appendChild(btn);
+        }
     });
 
-    // Load the first job automatically
-    if (jobTrees.length > 0) {
-        filterBySpecificJob(jobTrees[0], subNav.firstChild);
+    // Auto-load the first job in the list
+    if (subNav.firstChild) {
+        subNav.firstChild.click();
     }
 }
 
