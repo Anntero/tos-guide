@@ -2,8 +2,8 @@ let allSkills = []; // This starts empty and gets filled by the other files
 
 const classMap = {
     "Swordsman": ["Swordsman Tree", "Highlander Tree", "Peltasta Tree", "Hoplite Tree", "Barbarian Tree"],
-    "Wizard": ["Wizard Tree", "Pyromancer Tree", "Cryomancer Tree", "Psychokino Tree"],
-    "Archer": ["Archer Tree", "Quarrel Shooter Tree", "Ranger Tree"],
+    "Wizard": ["Wizard Tree", "Pyromancer Tree", "Cryomancer Tree", "Psychokino Tree", "Sorcerer Tree", "Necromancer Tree", "Chronomancer Tree"],
+    "Archer": ["Archer Tree", "Quarrel Shooter Tree", "Ranger Tree", "Sapper Tree", "Fletcher Tree", "Rogue Tree", "Scout Tree"],
     "Cleric": ["Cleric Tree", "Priest Tree", "Krivis Tree", "Bokor Tree", "Dievdirbys Tree", "Paladin Tree", "Monk Tree"]
 };
 
