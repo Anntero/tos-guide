@@ -4552,25 +4552,23 @@ const allSkills = [
   }
 ];
 
+// 1. Define which Jobs belong to which Base Class
+const classMap = {
+    "Swordsman": ["Swordsman Tree", "Highlander Tree", "Peltasta Tree", "Hoplite Tree", "Barbarian Tree"],
+    "Wizard": ["Wizard Tree", "Pyromancer Tree", "Cryomancer Tree", "Psychokino Tree"],
+    "Archer": ["Archer Tree", "Quarrel Shooter Tree", "Ranger Tree"],
+    "Cleric": ["Cleric Tree", "Priest Tree", "Krivis Tree", "Bokor Tree", "Dievdirbys Tree"]
+};
+
 function selectBaseClass(baseName, element) {
-    // 1. Clear old highlights
     const buttons = document.querySelectorAll('#class-nav button');
     buttons.forEach(btn => btn.classList.remove('active'));
-    
-    // 2. Highlight the new button (if it exists)
-    if (element) {
-        element.classList.add('active');
-    }
+    if (element) element.classList.add('active');
 
-    // 3. Find unique Jobs for this category
-    // This looks for "Swordsman Tree", "Highlander Tree", etc.
-    const jobTrees = [...new Set(allSkills
-        .filter(s => s.tree && s.tree.includes(baseName))
-        .map(s => s.tree)
-    )].sort();
+    // Use the Map above to find the right trees
+    const jobTrees = classMap[baseName] || [];
 
     const subNav = document.getElementById('sub-nav');
-    if (!subNav) return; // Safety check
     subNav.innerHTML = ""; 
     
     jobTrees.forEach(treeName => {
@@ -4580,7 +4578,7 @@ function selectBaseClass(baseName, element) {
         subNav.appendChild(btn);
     });
 
-    // 4. Load the first job automatically
+    // Load the first job automatically
     if (jobTrees.length > 0) {
         filterBySpecificJob(jobTrees[0], subNav.firstChild);
     }
