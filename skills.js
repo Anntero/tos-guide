@@ -4551,7 +4551,17 @@ const allSkills = [
     "iconUrl": "icons/.png"
   }
 ];
-
+// Add this temporary repair script below your data
+allSkills.forEach(skill => {
+    // If the description mentions "Priest", change the tree to "Priest Tree"
+    if (skill.description && skill.description.includes("Priest")) {
+        skill.tree = "Priest Tree";
+    }
+    // Repeat for other classes
+    if (skill.description && skill.description.includes("Highlander")) {
+        skill.tree = "Highlander Tree";
+    }
+});
 // 1. THIS IS THE MAP: Add all your jobs here so the site knows where they belong
 const classMap = {
     "Swordsman": ["Swordsman Tree", "Highlander Tree", "Peltasta Tree", "Hoplite Tree", "Barbarian Tree", "Rodelero Tree", "Murmillo Tree", "Squire Tree", "Shinobi Tree", "Doppelsoeldner Tree", "Fencer Tree", "Dragoon Tree", "Templar Tree", "Lancer Tree", "Matador Tree", "Retiarius Tree"],
